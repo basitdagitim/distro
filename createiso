@@ -18,6 +18,7 @@ cp busybox $rootfs/bin/busybox
 cd $rootfs/bin/
 #busybox --install -s ./
 #cd $rootfs/
+cd distro/rootfs/
 mkdir  -p var run dev sys proc etc tmp/bps/kur
 bash -c "echo '127.1.1.0 basitdagitim' >> etc/hosts"
 bash -c "echo 'basitdagitim' > etc/hostname"
