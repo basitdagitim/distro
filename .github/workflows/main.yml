@@ -8,7 +8,7 @@ on:
 
 jobs:
     compile:
-        name: iso
+        name: Teaiso
         runs-on: ubuntu-latest
         steps:
           - name: Check out the repo
@@ -20,8 +20,9 @@ jobs:
                 options: -v ${{ github.workspace }}:/root -v /output:/output
                 run: |
                     cd /root
-                    bash createIso.sh
-                    mv *.iso /output/etahta.iso
+                    #pwd
+                    bash createiso
+                    mv /tmp/distro/distro.iso /output/distro.iso
           - uses: "marvinpinto/action-automatic-releases@latest"
             with:
                 repo_token: "${{ secrets.GITHUB_TOKEN }}"
