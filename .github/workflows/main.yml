@@ -22,7 +22,7 @@ jobs:
                     cd /root
                     #pwd
                     bash createiso
-                    mv /tmp/distro/distro.iso /output/distro.iso
+                    mv distro/distro.iso /output/distro.iso
           - uses: "marvinpinto/action-automatic-releases@latest"
             with:
                 repo_token: "${{ secrets.GITHUB_TOKEN }}"
