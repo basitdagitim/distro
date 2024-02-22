@@ -12,7 +12,7 @@ rm -rf distro/iso
 rm -rf $rootfs
 mkdir -p distro
 mkdir -p $rootfs/bin
-mkdir - distro/rootfs
+mkdir -p distro/rootfs
 #export PATH=/bbin:$PATH
 cp busybox $rootfs/bin/busybox
 cd $rootfs/bin/
