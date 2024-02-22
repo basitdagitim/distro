@@ -1,4 +1,5 @@
 #!/bin/bash
+echo ""
 rootfs="/tmp/distro/rootfs"
 rm -rf /tmp/distro/iso
 rm -rf $rootfs
