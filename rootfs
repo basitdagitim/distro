@@ -13,7 +13,7 @@ mkdir  -p var run dev sys proc etc tmp/bps/kur
 bash -c "echo '127.1.1.0 basitdagitim' >> etc/hosts"
 bash -c "echo 'basitdagitim' > etc/hostname"
 bash -c "echo 'nameserver 8.8.8.8' > etc/resolv.conf"
-
+echo ""
 ### system chroot  bind/mount
 #for i in dev dev/pts proc sys; do mount -o bind /$i $rootfs/$i; done
 ### manuel bps-tools install
