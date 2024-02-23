@@ -15,7 +15,7 @@ bash -c "echo 'basitdagitim' > etc/hostname"
 bash -c "echo 'nameserver 8.8.8.8' > etc/resolv.conf"
 echo ""
 ### system chroot  bind/mount
-#for i in dev dev/pts proc sys; do mount -o bind /$i $rootfs/$i; done
+for i in dev dev/pts proc sys; do mount -o bind /$i $rootfs/$i; done
 ### manuel bps-tools install
 $rootfs/bin/busybox wget -O $rootfs/tmp/base-file-1.0.bps https://github.com/basitdagitim/bps-binary-packages/raw/master/sys/base/base-file/base-file-1.0.bps 1>$rootfs/dev/null 2>$rootfs/dev/null
 $rootfs/bin/busybox tar -xf $rootfs/tmp/base-file-1.0.bps -C $rootfs/tmp/bps/kur
@@ -46,7 +46,7 @@ cp $rootfs/boot/config-$kversion $rootfs/etc/kernel-config
 chroot $rootfs update-initramfs -u -k $kversion
 
 #### system chroot umount
-#for dir in dev dev/pts proc sys ; do    while umount -lf -R $rootfs/$dir 2>/dev/null ; do true; done done
+for dir in dev dev/pts proc sys ; do    while umount -lf -R $rootfs/$dir 2>/dev/null ; do true; done done
 
 #************************iso *********************************
 mkdir -p /tmp/distro/iso
