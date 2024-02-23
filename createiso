@@ -71,7 +71,7 @@ cp -pf $rootfs/boot/initrd.img-* /root/distro/iso/boot/initrd.img
 cp -pf $rootfs/boot/vmlinuz-* /root/distro/iso/boot/vmlinuz
 rm -rf $rootfs/boot
 #### Create squashfs
-mksquashfs $rootfs distro/filesystem.squashfs -comp xz -wildcards
+mksquashfs $rootfs /root/distro/filesystem.squashfs -comp xz -wildcards
 mv /root/distro/filesystem.squashfs /root/distro/iso/live/filesystem.squashfs
 
 #### Write grub.cfg
