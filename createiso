@@ -32,7 +32,7 @@ $rootfs/bin/busybox tar -xf $rootfs/tmp/base-file-1.0.bps -C $rootfs/tmp/bps/kur
 $rootfs/bin/busybox tar -xf $rootfs/tmp/bps/kur/rootfs.tar.xz -C $rootfs
 
 #paket adresi ekleniyor
-$rootf/bin/busybox mkdir -p $rootfs/etc/bps
+$rootfs/bin/busybox mkdir -p $rootfs/etc/bps
 echo "basitdagitim/bps-binary-packages">$rootfs/etc/bps/sources.list
 ### installing bps package in rootfs
 $rootfs/bin/bps -u $rootfs
