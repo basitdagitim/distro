@@ -42,7 +42,7 @@ for paket in libpcre2 libselinux libsepol libsemanage mcstrans attr busybox \
 		readline ncurses \bash kmod eudev util-linux \grep \sed \
 		grub e2fsprogs libarchive xz curl openssl initramfs-tools \gzip \
 		coreutils acl gmp findutils openrc audit pam libcap \
-		zlib zstd libxml2 brotli curl linux-image  live-boot live-config parted dosfstools
+		zlib zstd libxml2 brotli curl linux-image live-boot live-config parted dosfstools
 do 
 $rootfs/bin/bps -ri $paket $rootfs; 
 done
