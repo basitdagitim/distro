@@ -48,7 +48,6 @@ do
 $rootfs/bin/bps -ri $paket $rootfs; 
 done
 
-
 ### update-initrd
 fname=$(basename $rootfs/boot/config*)
 kversion=${fname:7}
