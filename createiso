@@ -69,7 +69,6 @@ mkdir -p /root/distro/iso/live || true
 
 #### Copy kernel and initramfs (Debian/Devuan)
 
-
 cp -pf $rootfs/boot/initrd.img-* /root/distro/iso/boot/initrd.img
 cp -pf $rootfs/boot/vmlinuz-* /root/distro/iso/boot/vmlinuz
 rm -rf $rootfs/boot
