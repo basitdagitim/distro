@@ -34,6 +34,7 @@ $rootfs/bin/busybox tar -xf $rootfs/tmp/bps/kur/rootfs.tar.xz -C $rootfs
 #paket adresi ekleniyor
 $rootfs/bin/busybox mkdir -p $rootfs/etc/bps
 echo "basitdagitim/bps-binary-packages">$rootfs/etc/bps/sources.list
+echo "anadolulinux/lfs-binary-packages">>$rootfs/etc/bps/sources.list
 ### installing bps package in rootfs
 $rootfs/bin/bps -u $rootfs
 
@@ -43,7 +44,8 @@ for paket in libpcre2 libselinux libsepol libsemanage mcstrans attr busybox \
 		grub e2fsprogs libarchive xz curl openssl initramfs-tools \gzip \
 		coreutils acl gmp findutils openrc audit pam libcap \
 		zlib zstd libxml2 brotli curl linux-image live-boot live-config \
-		shadow parted dosfstools
+		shadow parted dosfstools\
+		x11-base-base x11-libs-base x11-driver-base font-base libbsd mesa freetype dbus openssh xinit expat libmd dialog
 do 
 $rootfs/bin/bps -ri $paket $rootfs; 
 done
@@ -86,6 +88,10 @@ echo '    linux /boot/vmlinuz boot=live init=/bin/kur2 ' >> /root/distro/iso/boo
 echo '    initrd /boot/initrd.img' >> /root/distro/iso/boot/grub/grub.cfg
 echo '}' >> /root/distro/iso/boot/grub/grub.cfg
 
+echo 'menuentry "Kur Tek Part GNU/Linux 64-bit" --class liveiso  {' >> /root/distro/iso/boot/grub/grub.cfg
+echo '    linux /boot/vmlinuz boot=live init=/bin/kur1 ' >> /root/distro/iso/boot/grub/grub.cfg
+echo '    initrd /boot/initrd.img' >> /root/distro/iso/boot/grub/grub.cfg
+echo '}' >> /root/distro/iso/boot/grub/grub.cfg
 
 grub-mkrescue /root/distro/iso/ -o /root/distro/distro.iso
 
