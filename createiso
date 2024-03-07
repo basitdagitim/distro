@@ -16,6 +16,7 @@ mkdir -p $rootfs/bin
 #export PATH=/bbin:$PATH
 cp busybox $rootfs/bin/busybox
 cd $rootfs/bin/
+ln -s busybox cpio
 #busybox --install -s ./
 cd $rootfs/
 #cd distro/rootfs/
