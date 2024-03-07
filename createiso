@@ -55,6 +55,7 @@ fname=$(basename $rootfs/boot/config*)
 kversion=${fname:7}
 mv $rootfs/boot/config* $rootfs/boot/config-$kversion
 cp $rootfs/boot/config-$kversion $rootfs/etc/kernel-config
+
 chroot $rootfs update-initramfs -u -k $kversion
 
 #### system chroot umount
