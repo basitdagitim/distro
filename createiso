@@ -38,8 +38,21 @@ echo "basitdagitim/bps-binary-packages">$rootfs/etc/bps/sources.list
 echo "anadolulinux/lfs-binary-packages">>$rootfs/etc/bps/sources.list
 ### installing bps package in rootfs
 $rootfs/bin/bps -u $rootfs
+echo root:x:0:0:root:/root:/bin/sh > $rootfs/etc/passwd 
 
-$rootfs/bin/bps -ri glibc $rootfs
+$rootfs/bin/bps -i glibc $rootfs
+$rootfs/bin/bps -i \bash $rootfs
+$rootfs/bin/bps -i openssl $rootfs
+$rootfs/bin/bps -i acl $rootfs
+$rootfs/bin/bps -i attr $rootfs
+$rootfs/bin/bps -i libcap $rootfs
+$rootfs/bin/bps -i gmp $rootfs
+$rootfs/bin/bps -i \grep $rootfs
+$rootfs/bin/bps -i \sed $rootfs
+$rootfs/bin/bps -i libpcre2 $rootfs
+$rootfs/bin/bps -i coreutils $rootfs
+$rootfs/bin/bps -i util-linux $rootfs
+
 for paket in libpcre2 libselinux libsepol libsemanage mcstrans attr busybox \
 		readline ncurses \bash kmod eudev util-linux \grep \sed \
 		grub e2fsprogs libarchive xz curl openssl initramfs-tools \gzip \
@@ -48,7 +61,7 @@ for paket in libpcre2 libselinux libsepol libsemanage mcstrans attr busybox \
 		shadow parted dosfstools\
 		x11-base-base x11-libs-base x11-driver-base font-base libbsd mesa freetype dbus openssh xinit expat libmd dialog
 do 
-$rootfs/bin/bps -ri $paket $rootfs; 
+$rootfs/bin/bps -i $paket $rootfs; 
 done
 
 ### update-initrd
