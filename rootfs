@@ -9,11 +9,7 @@ cp ./busybox $rootfs/bin/busybox
 cd $rootfs/bin/
 #busybox --install -s ./
 cd $rootfs/
-mkdir  -p var run dev sys proc etc tmp/bps/kur
-bash -c "echo '127.1.1.0 basitdagitim' >> etc/hosts"
-bash -c "echo 'basitdagitim' > etc/hostname"
-bash -c "echo 'nameserver 8.8.8.8' > etc/resolv.conf"
-echo ""
+mkdir  -p var run dev sys proc tmp/bps/kur  etc 
 ### system chroot  bind/mount
 ##for i in dev dev/pts proc sys; do mount -o bind /$i $rootfs/$i; done
 ### manuel bps-tools install
@@ -22,25 +18,36 @@ $rootfs/bin/busybox tar -xf $rootfs/tmp/base-file-1.0.bps -C $rootfs/tmp/bps/kur
 $rootfs/bin/busybox tar -xf $rootfs/tmp/bps/kur/rootfs.tar.xz -C $rootfs
 
 
+bash -c "echo '127.0.0.1 basitdagitim' > $rootfs/etc/hosts"
+bash -c "echo 'basitdagitim' > $rootfs/etc/hostname"
+bash -c "echo 'nameserver 8.8.8.8' > $rootfs/etc/resolv.conf"
+
+
 #paket adresi ekleniyor
 $rootf/bin/busybox mkdir -p $rootfs/etc/bps
 echo "basitdagitim/bps-binary-packages">$rootfs/etc/bps/sources.list
+echo "anadolulinux/lfs-binary-packages">>$rootfs/etc/bps/sources.list
+
+
 ### installing bps package in rootfs
 $rootfs/bin/bps -u $rootfs
 echo root:x:0:0:root:/root:/bin/sh > $rootfs/etc/passwd 
 
-$rootfs/bin/bps -i glibc $rootfs
-$rootfs/bin/bps -i \bash $rootfs
-$rootfs/bin/bps -i openssl $rootfs
-$rootfs/bin/bps -i acl $rootfs
-$rootfs/bin/bps -i attr $rootfs
-$rootfs/bin/bps -i libcap $rootfs
-$rootfs/bin/bps -i gmp $rootfs
-$rootfs/bin/bps -i \grep $rootfs
-$rootfs/bin/bps -i \sed $rootfs
-$rootfs/bin/bps -i libpcre2 $rootfs
-$rootfs/bin/bps -i coreutils $rootfs
-$rootfs/bin/bps -i util-linux $rootfs
+$rootfs/bin/bps -ri glibc $rootfs
+$rootfs/bin/bps -ri readline $rootfs
+$rootfs/bin/bps -ri ncurses $rootfs
+$rootfs/bin/bps -ri \bash $rootfs
+$rootfs/bin/bps -ri openssl $rootfs
+$rootfs/bin/bps -ri acl $rootfs
+$rootfs/bin/bps -ri attr $rootfs
+$rootfs/bin/bps -ri libcap $rootfs
+$rootfs/bin/bps -ri gmp $rootfs
+$rootfs/bin/bps -ri \grep $rootfs
+$rootfs/bin/bps -ri \sed $rootfs
+$rootfs/bin/bps -ri libpcre2 $rootfs
+$rootfs/bin/bps -ri coreutils $rootfs
+$rootfs/bin/bps -ri util-linux $rootfs
+exit
 
 for paket in libpcre2 libselinux libsepol libsemanage mcstrans attr busybox \
 		readline ncurses \bash kmod eudev util-linux \grep \sed \
@@ -49,7 +56,7 @@ for paket in libpcre2 libselinux libsepol libsemanage mcstrans attr busybox \
 		zlib zstd libxml2 brotli curl linux-image openrc  live-boot live-config parted dosfstools
 		#openrc
 do 
-$rootfs/bin/bps -ri $paket $rootfs; 
+chroot $rootfs /bin/bps -i $paket; 
 done
 
 
