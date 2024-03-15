@@ -68,6 +68,7 @@ chroot $rootfs /bin/bps -i $paket;
 done
 
 
+
 ### update-initrd
 fname=$(basename $rootfs/boot/config*)
 kversion=${fname:7}
