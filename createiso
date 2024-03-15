@@ -55,6 +55,7 @@ $rootfs/bin/bps -ri libpcre2 $rootfs
 $rootfs/bin/bps -ri coreutils $rootfs
 $rootfs/bin/bps -ri util-linux $rootfs
 
+
 for paket in libpcre2 libselinux libsepol libsemanage mcstrans attr busybox \
 		readline ncurses \bash kmod eudev util-linux \grep \sed \
 		grub e2fsprogs libarchive xz curl openssl initramfs-tools \gzip \
